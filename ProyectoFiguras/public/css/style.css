@@ -65,6 +65,15 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.numero-input {
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
 .resultado {
     margin-top: 20px;
     font-weight: bold;

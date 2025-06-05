@@ -11,7 +11,7 @@ class FiguraController{
         this.vistaTriangulo = this.vistaTriangulo.bind(this);
         this.vistaCirculo = this.vistaCirculo.bind(this);
         this.calcularResultadoAreaFiguras = this.calcularResultadoAreaFiguras.bind(this);
-        this.calcularResultadoPerimetroFiguras = this.calcularResultadoPerimetroFiguras.bind(this);
+        
     }
 
 
