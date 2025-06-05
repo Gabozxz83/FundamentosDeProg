@@ -1,3 +1,4 @@
+import { response } from "express";
 import FiguraService    from "../models/FiguraService.js";
 class FiguraController{
 
@@ -5,13 +6,38 @@ class FiguraController{
     constructor(){
         this.figuraService=new FiguraService();
         this.formularioCalcularArea = this.formularioCalcularArea.bind(this);
+        this.formularioCalcularPerimetro = this.formularioCalcularPerimetro.bind(this);
+        this.vistaCuadrado = this.vistaCuadrado.bind(this);
+        this.vistaTriangulo = this.vistaTriangulo.bind(this);
+        this.vistaCirculo = this.vistaCirculo.bind(this);
         this.calcularResultadoAreaFiguras = this.calcularResultadoAreaFiguras.bind(this);
+        this.calcularResultadoPerimetroFiguras = this.calcularResultadoPerimetroFiguras.bind(this);
     }
 
 
     formularioCalcularArea(request,reponse){
         reponse.render('area');
 
+    }
+
+    formularioCalcularPerimetro(request,reponse){
+        reponse.render('perimetro');
+
+    }
+
+    vistaCuadrado(request,reponse){
+        reponse.render('Cuadrado');
+
+    }
+
+    vistaTriangulo(request,reponse){
+        reponse.render('Triangulo');
+    
+    }
+
+    vistaCirculo(request,reponse){
+        reponse.render('Circulo');
+    
     }
 
     calcularResultadoAreaFiguras(request, reponse) {
