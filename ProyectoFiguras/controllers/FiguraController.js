@@ -61,10 +61,8 @@ class FiguraController{
                 resultado= this.figuraServices.calcularPerimetroCirculo(radio);
             }   
             reponse.render('perimetro' , { resultado });
-        }
     }
-
-
+}
 
 export default FiguraController;
 
