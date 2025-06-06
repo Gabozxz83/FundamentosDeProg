@@ -1,3 +1,4 @@
+<!-- Ejemplo para Cuadrado (similar para Triángulo y Círculo) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,26 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figuras Geométricas</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/figuras.js"></script>
 </head>
 <body>
     <div class="from-container">
         <h2>Figuras Geométricas</h2>
         
         <div class="figuras-contenedor">      
-                  
             <div class="figura-item">
-            <img src="img/Triangulo 2.png" alt="Triángulo" class="figura-img">                
-            <div class="boton-columna">
-            <input id="lado1"number" type="text" class="numero-input" placeholder="Lado1">          
-            <input id="lado2"number" type="text" class="numero-input" placeholder="Lado2">
-            <input id="lado3"number" type="text" class="numero-input" placeholder="Lado3">
-                <button class="boton-azul">Cálcular</button>
-                <input id="lado"number" type="text" class="numero-input" placeholder="Resultado">
-                <button class="boton-azul" onclick="window.location.href='/'">Inicio</button>
+                <img src="img/Triangulo 2.png" alt="Triangulo" class="figura-img">                
+                <div class="boton-columna">
+                    <input id="lado1" type="number" class="numero-input" placeholder="lado1">
+                    <input id="lado2" type="number" class="numero-input" placeholder="lado2">
+                    <input id="lado3" type="number" class="numero-input" placeholder="lado3">
+                    <input id="base" type="number" class="numero-input" placeholder="base">
+                    <input id="altura" type="number" class="numero-input" placeholder="altura">
+                    <button class="boton-azul" onclick="calcularTriangulo()">Calcular</button>
+                    <input id="resultado" type="text" class="numero-input" placeholder="Resultado" readonly>
+                    <button class="boton-azul" onclick="window.location.href='/'">Inicio</button>
+                </div>
             </div>
-        </div>
-    
-        </div>
+        </div>   
     </div>
+    <script>
+    
+    function calcularTriangulo() {
+        const lado1 = parseFloat(document.getElementById('lado1').value);
+        const lado2 = parseFloat(document.getElementById('lado2').value);
+        const lado3 = parseFloat(document.getElementById('lado3').value);
+        const base = parseFloat(document.getElementById('base').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        
+        // Validaciones
+        if (isNaN(lado1) || isNaN(lado2) || isNaN(lado3) || 
+            isNaN(base) || isNaN(altura) || 
+            lado1 <= 0 || lado2 <= 0 || lado3 <= 0 || 
+            base <= 0 || altura <= 0) {
+            alert('Uy Por favor ingrese valores válidos');
+            return;
+        }
+        
+        const perimetro = lado1 + lado2 + lado3;
+        const area = (base * altura) / 2;
+        
+        document.getElementById('resultado').value = `Área: ${area.toFixed(0)} | Perím: ${perimetro.toFixed(0)}`;
+    }
+    </script>
 </body>
 </html>

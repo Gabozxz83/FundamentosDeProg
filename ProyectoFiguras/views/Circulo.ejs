@@ -1,3 +1,4 @@
+<!-- Ejemplo para Cuadrado (similar para Triángulo y Círculo) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,24 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figuras Geométricas</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/figuras.js"></script>
 </head>
 <body>
     <div class="from-container">
         <h2>Figuras Geométricas</h2>
         
         <div class="figuras-contenedor">      
-                  
             <div class="figura-item">
-            <img src="img/Circulo 3.png" alt="Circulo" class="figura-img">                
-            <div class="boton-columna">
-             <input id="radio"number" type="text" class="numero-input" placeholder="Radio">
-                <button class="boton-azul">Cálcular</button>
-                <input id="radio"number" type="text" class="numero-input" placeholder="Resultado">
-                <button class="boton-azul" onclick="window.location.href='/'">Inicio</button>
+                <img src="img/Circulo 3.png" alt="Circulo" class="figura-img">                
+                <div class="boton-columna">
+                    <input id="radio" type="number" class="numero-input" placeholder="radio">          
+                    <button class="boton-azul" onclick="calcularCirculo()">Calcular</button>
+                    <input id="resultado" type="text" class="numero-input" placeholder="Resultado" readonly>
+                    <button class="boton-azul" onclick="window.location.href='/'">Inicio</button>
+                </div>
             </div>
-        </div>
-    
-        </div>
+        </div>   
     </div>
+    <script>
+        function calcularCirculo() {
+        const radio = parseFloat(document.getElementById('radio').value);
+        if (isNaN(radio) || radio <= 0) {
+            alert('Uy ingrese un valor válido para el radio');
+            return;
+        }
+        
+        const area = Math.PI * radio * radio;
+        const perimetro = 2 * Math.PI * radio;
+        
+        document.getElementById('resultado').value = `Área: ${area.toFixed(0)} | Perím: ${perimetro.toFixed(0)}`;
+    }
+</script>
 </body>
 </html>
