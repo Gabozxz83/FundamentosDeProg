@@ -11,18 +11,16 @@ class FiguraController{
         this.vistaTriangulo = this.vistaTriangulo.bind(this);
         this.vistaCirculo = this.vistaCirculo.bind(this);
         this.calcularResultadoAreaFiguras = this.calcularResultadoAreaFiguras.bind(this);
+        this.calcularResultadoPerimetroFiguras = this.calcularResultadoPerimetroFiguras.bind(this);
         
     }
 
-
     formularioCalcularArea(request,reponse){
         reponse.render('area');
-
     }
 
     formularioCalcularPerimetro(request,reponse){
         reponse.render('perimetro');
-
     }
 
     vistaCuadrado(request,reponse){
@@ -41,42 +39,32 @@ class FiguraController{
     }
 
     calcularResultadoAreaFiguras(request, reponse) {
-        const { figura, base, altura, radio, lado1, lado2, lado3 } = request.body;
-
-        let resultados = {
-            area: null,
-            perimetro: null,
-            figura: figura
-        };
-
-        try {
-            switch(figura) {
-                case 'cuadrado':
-                    resultados.area = this.figuraService.calcularAreaCuadrado(base);
-                    resultados.perimetro = this.figuraService.calcularPerimetroCuadrado(base);
-                    break;
-
-                case 'triangulo':
-                    resultados.area = this.figuraService.calcularAreaTriangulo(base, altura);
-                    resultados.perimetro = this.figuraService.calcularPerimetroTriangulo(lado1, lado2, lado3);
-                    
-                case 'circulo':
-                    resultados.area = this.figuraService.calcularAreaCirculo(radio);
-                    resultados.perimetro = this.figuraService.calcularPerimetroCirculo(radio);
-                    break;
-                default:
-                    throw new Error('Figura no reconocida');
-
-        }
-        
-        reponse.render('resultados', { resultados });
-    }catch (error) {
-            response.status(400).render('error', { 
-                mensaje: 'Error en el cálculo: ' + error.message 
-            });
+        const { figura, base, altura, radio, lado } = request.body;
+        let resultado;
+            if(figura==='cuadrado'){
+                resultado= this.figuraServices.calcularAreaCuadrado(lado);
+            } else if (figura=== 'triangulo'){
+                resultado= this.figuraServices.calcularAreaTriangulo(base, altura);
+            } else if (figura=== 'circulo'){
+                resultado= this.figuraServices.calcularAreaCirculo(radio);
+            }
+            reponse.render('area' , { resultado });
+    }
+     
+    calcularResultadoPerimetroFiguras(request, reponse) {
+        const { figura,radio, lado, lado1, lado2, lado3 } = request.body;
+            if(figura==='cuadrado'){
+                resultado= this.figuraServices.calcularPerimetroCuadrado(lado);
+            } else if (figura=== 'triangulo'){
+            resultado= this.figuraServices.calcularPerimetroTriangulo(lado1, lado2, lado3);
+            } else if (figura=== 'circulo'){
+                resultado= this.figuraServices.calcularPerimetroCirculo(radio);
+            }   
+            reponse.render('perimetro' , { resultado });
         }
     }
-}
+
+
 
 export default FiguraController;
 
